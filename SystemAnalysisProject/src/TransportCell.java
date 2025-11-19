@@ -2,6 +2,10 @@ public class TransportCell {
     private String id;
     private int value;
     private int transportCost;
+    TransportCell(String id, int transportCost){
+        setId(id);
+        setTransportCost(transportCost);
+    }
     public String getId() {
         return id;
     }
