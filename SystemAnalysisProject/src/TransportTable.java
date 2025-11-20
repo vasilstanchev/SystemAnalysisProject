@@ -10,11 +10,12 @@ public class TransportTable {
     public int countOfWarehouses;
     public void enterCells(){
         Scanner scanner = new Scanner(System.in);
-        List<TransportCell> transportRow = new ArrayList<>();
+        List<TransportCell> transportRow;
 
         for (int i = 0; i < countOfFactories; i++) {
+            transportRow = new ArrayList<>();
             for (int j = 0; j < countOfWarehouses; j++) {
-                String id = String.valueOf(i) + String.valueOf(j);
+                String id = String.valueOf(i+1) + String.valueOf(j+1);
                 System.out.println("Id: " + id);
                 System.out.println("Enter transport value:");
                 int transportCost = Integer.parseInt(scanner.nextLine());
@@ -22,13 +23,10 @@ public class TransportTable {
                 transportRow.add(transportCell);
             }
             transportTable.add(transportRow);
-            transportRow.clear();
         }
     }
     public void enterCapacity(){
         Scanner sc = new Scanner(System.in);
-        List<Integer> capacityOfFactories = new ArrayList<>();
-        List<Integer> capacityOfWarehouses = new ArrayList<>();
 
         System.out.println("Enter the capacity of each of the warehouses:");
         for (int i = 0; i < countOfWarehouses; i++) {
@@ -55,7 +53,7 @@ public class TransportTable {
 
         if (sumWarehouses > sumFactories){
             for (int i = 0; i < countOfWarehouses; i++) {
-                String id = String.valueOf(countOfFactories + 1) + String.valueOf(i);
+                String id = String.valueOf(countOfFactories + 1) + String.valueOf(i+1);
                 System.out.println("Id: " + id);
                 TransportCell transportCell = new TransportCell(id, 0);
                 transportRow.add(transportCell);
@@ -66,13 +64,27 @@ public class TransportTable {
         }
         else if (sumFactories>sumWarehouses){
             for (int i = 0; i < countOfFactories; i++) {
-                String id = String.valueOf(i) + String.valueOf(countOfWarehouses + 1);
+                String id = String.valueOf(i+1) + String.valueOf(countOfWarehouses + 1);
                 System.out.println("Id: " + id);
                 TransportCell transportCell = new TransportCell(id, 0);
                 transportTable.get(i).add(transportCell);
             }
-            capacityOfFactories.add(sumFactories - sumWarehouses);
+            capacityOfWarehouses.add(sumFactories - sumWarehouses);
             System.out.println("Fictitious warehouse has been added");
+        }
+    }
+
+    public void showTransportTable(){
+        System.out.println("Transport table:");
+        for (int i = 0; i < transportTable.size(); i++) {
+            for (int j = 0; j < transportTable.get(i).size(); j++) {
+                System.out.printf("Id: %s, Value: %d, Transport cost: %d | ", transportTable.get(i).get(j).getId(), transportTable.get(i).get(j).getValue(), transportTable.get(i).get(j).getTransportCost());
+            }
+            System.out.printf("%d", capacityOfFactories.get(i));
+            System.out.println();
+        }
+        for (int i = 0; i < countOfWarehouses; i++) {
+            System.out.printf("%d                                |", capacityOfWarehouses.get(i));
         }
     }
 

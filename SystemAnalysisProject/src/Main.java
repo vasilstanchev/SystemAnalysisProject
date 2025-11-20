@@ -14,6 +14,7 @@ public class Main {
         transportTable.enterCells();
         transportTable.enterCapacity();
         transportTable.determineFictitiousCapacity();
+        transportTable.showTransportTable();
     }
     public static void main(String[] args) {
         TransportTable transportTable = new TransportTable();
