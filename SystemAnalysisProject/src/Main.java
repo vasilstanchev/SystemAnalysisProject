@@ -16,6 +16,7 @@ public class Main {
         transportTable.determineFictitiousCapacity();
         transportTable.northwestCornerMethod();
         transportTable.showTransportTable();
+        transportTable.objectiveFunction();
     }
     public static void main(String[] args) {
         TransportTable transportTable = new TransportTable();

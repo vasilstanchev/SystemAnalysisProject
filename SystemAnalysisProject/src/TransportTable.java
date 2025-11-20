@@ -28,16 +28,16 @@ public class TransportTable {
     public void enterCapacity(){
         Scanner sc = new Scanner(System.in);
 
-        System.out.println("Enter the capacity of each of the warehouses:");
-        for (int i = 0; i < countOfWarehouses; i++) {
-            System.out.println("Warehouse "+ (i+1));
-            capacityOfWarehouses.add(Integer.parseInt(sc.nextLine()));
-        }
-
         System.out.println("Enter the capacity of each of the factories:");
         for (int i = 0; i < countOfFactories; i++) {
             System.out.println("Factory "+ (i+1));
             capacityOfFactories.add(Integer.parseInt(sc.nextLine()));
+        }
+
+        System.out.println("Enter the capacity of each of the warehouses:");
+        for (int i = 0; i < countOfWarehouses; i++) {
+            System.out.println("Warehouse "+ (i+1));
+            capacityOfWarehouses.add(Integer.parseInt(sc.nextLine()));
         }
     }
     public void determineFictitiousCapacity(){
@@ -86,6 +86,7 @@ public class TransportTable {
         for (int i = 0; i < countOfWarehouses; i++) {
             System.out.printf("%d                                |", capacityOfWarehouses.get(i));
         }
+        System.out.println();
     }
 
     public void northwestCornerMethod(){
@@ -112,6 +113,16 @@ public class TransportTable {
                 }
             }
         }
+    }
+
+    public void objectiveFunction(){
+        int zSum = 0;
+        for (int i = 0; i < transportTable.size(); i++) {
+            for (int j = 0; j < transportTable.get(i).size(); j++) {
+                zSum += transportTable.get(i).get(j).getValue() * transportTable.get(i).get(j).getTransportCost();
+            }
+        }
+        System.out.printf("Z = %d", zSum);
     }
 
     public void setCountOfFactories(int countOfFactories) {
