@@ -14,6 +14,7 @@ public class Main {
         transportTable.enterCells();
         transportTable.enterCapacity();
         transportTable.determineFictitiousCapacity();
+        transportTable.northwestCornerMethod();
         transportTable.showTransportTable();
     }
     public static void main(String[] args) {

@@ -88,6 +88,32 @@ public class TransportTable {
         }
     }
 
+    public void northwestCornerMethod(){
+        int tempFactory, tempWarehouse;
+        int warehousePointer = 0;
+        List<Integer> copyCapacityOfFactories = new ArrayList<>(capacityOfFactories);
+        List<Integer> copyCapacityOfWarehouses = new ArrayList<>(capacityOfWarehouses);
+        for (int i = 0; i < transportTable.size(); i++) {
+            tempFactory = copyCapacityOfFactories.get(i);
+            for (int j = warehousePointer; j < transportTable.get(i).size(); j++) {
+                tempWarehouse = copyCapacityOfWarehouses.get(j);
+                if (tempFactory > tempWarehouse){
+                    transportTable.get(i).get(j).setValue(tempWarehouse);
+                    tempFactory = tempFactory - tempWarehouse;
+                    copyCapacityOfFactories.set(i,tempFactory);
+                    warehousePointer++;
+                } else if (tempWarehouse > tempFactory) {
+                    transportTable.get(i).get(j).setValue(tempFactory);
+                    tempWarehouse = tempWarehouse - tempFactory;
+                    copyCapacityOfWarehouses.set(j,tempWarehouse);
+                    break;
+                } else if (tempWarehouse == tempFactory) {
+                    transportTable.get(i).get(j).setValue(tempFactory);
+                }
+            }
+        }
+    }
+
     public void setCountOfFactories(int countOfFactories) {
         this.countOfFactories = countOfFactories;
     }
